@@ -13,12 +13,16 @@ function App() {
   const handleSubmit = event => {
     event.preventDefault();
     const name = event.target.search.value;
-    if(name === searchText){
-      alert(`You have already serched by ${name}. Please enter a new text or press Load More button for load more.`)
-    } else {
-      setPage(1);
-      setPhotos([]);
-      setSearchText(name);
+    if (name) {
+      if (name === searchText) {
+        alert(
+          `You have already serched by ${name}. Please enter a new text or press Load More button for load more.`
+        );
+      } else {
+        setPage(1);
+        setPhotos([]);
+        setSearchText(name);
+      }
     }
   };
 
