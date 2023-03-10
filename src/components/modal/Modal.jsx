@@ -5,19 +5,18 @@ import { Overlay, DivModal } from './Modal.styled';
 const modalRoot = document.querySelector('#modal-root');
 
 function Modal(props) {
-  const { url, tags } = props;
+  const { url, tags, onClose } = props;
   useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
-
-  const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      props.onClose();
-    }
-  };
+  }, [onClose]);
 
   const handleBackdropClick = event => {
     if(event.currentTarget === event.target) {
