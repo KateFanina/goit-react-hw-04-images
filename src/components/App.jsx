@@ -5,7 +5,6 @@ import fetchSearchImages from '../actions/action';
 
 function App() {
   const [searchText, setSearchText] = useState('');
-  const [imageName, setImageName] = useState('');
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [totalHits, setTotalHits] = useState(0);
@@ -14,14 +13,16 @@ function App() {
   const handleSubmit = event => {
     event.preventDefault();
     const name = event.target.search.value;
-    setImageName(name);
+    console.log('name', name);
+    console.log('searchText', searchText);
+    if(name === searchText){
+      alert(`You have already serched by ${name}. Please enter a new text or press Load More button for load more.`)
+    } else {
+      setPage(1);
+      setPhotos([]);
+      setSearchText(name);
+    }
   };
-
-  useEffect(() => {
-    setPage(1);
-    setPhotos([]);
-    setSearchText(imageName);
-  }, [imageName]);
 
   useEffect(() => {
     if (searchText) {
