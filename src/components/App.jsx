@@ -13,8 +13,6 @@ function App() {
   const handleSubmit = event => {
     event.preventDefault();
     const name = event.target.search.value;
-    console.log('name', name);
-    console.log('searchText', searchText);
     if(name === searchText){
       alert(`You have already serched by ${name}. Please enter a new text or press Load More button for load more.`)
     } else {
